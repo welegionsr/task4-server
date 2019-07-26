@@ -5,7 +5,7 @@ const choreSchema = mongoose.Schema({
   description: { type: String, required: true },
   date: { type: Date, required: true },
   siblingId: {
-    type: Number,
+    type: String,
     required: true,
     validate: {
       async validator(siblingId) {
