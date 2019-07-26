@@ -8,9 +8,4 @@ router.get('/', async function(req, res, next) {
   res.send(siblings);
 });
 
-router.get('/:id', async function(req, res, next) {
-  const {siblingId} = req.params;
-  const sibling = await Sibling.findOne({siblingId}).select({name: 1, nickname: 1, _id: 0}).exec();
-});
-
 module.exports = router;

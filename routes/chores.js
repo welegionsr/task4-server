@@ -8,8 +8,6 @@ const {ObjectID} = require('mongodb');
 router.get("/", async function(req, res, next) {
   const chores = await Chore.find().exec();
   const siblings = await Sibling.find().exec();
-//   console.log({chores});
-//   console.log({siblings});
   const data = chores.map((chore, i) => {
       const result = siblings.find(sibling => sibling._id.toHexString() === chore.siblingId);
       return {...chore._doc, siblingName: (result || {}).name};
