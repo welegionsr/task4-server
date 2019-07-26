@@ -2,7 +2,6 @@ var express = require("express");
 var router = express.Router();
 const { Chore } = require("../models/Chore");
 const {Sibling} = require('../models/Sibling');
-const {ObjectID} = require('mongodb');
 
 /* GET all chores */
 router.get("/", async function(req, res, next) {
@@ -24,6 +23,15 @@ router.post('/', async function (req, res, next) {
     } catch (e) {
          res.status(400).send(e);
     }
+ });
+
+ router.delete('/:id', async function (req, res, next) {
+    const {id} = req.params;
+    Chore.findByIdAndDelete(id, (err, doc) => {
+        if (err) res.status(404).send(err);
+        //if worked without issues, send back the deleted document. no reason for now, but who knows.
+        res.send(doc);
+    })
  });
 
 module.exports = router;
