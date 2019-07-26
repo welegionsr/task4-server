@@ -9,7 +9,8 @@ const URL = 'mongodb://localhost:27017/task4';
 mongoose.connect(URL, ({useNewUrlParser: true}));
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var siblingsRouter = require('./routes/siblings');
+var choresRouter = require('./routes/chores');
 
 var app = express();
 
@@ -21,6 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/siblings', siblingsRouter);
+app.use('/chores', choresRouter);
 
 module.exports = app;
